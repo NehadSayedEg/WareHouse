@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.nehad.warehouse">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.WareHouse">
+        <activity android:name=".ui.invoice.InvoiceActivity"></activity>
+        <activity android:name=".ui.ShelfActivity.ShelfsActivity" />
+        <activity android:name=".ui.stockRecevie.StockRecevieActivity" />
+        <activity android:name=".ui.balance.BalanceActivity" />
+        <activity android:name=".ui.ItemsActivity" />
+        <activity android:name=".ui.reports.ReportsActivity" />
+        <activity android:name=".ui.storesActivity.StoresActivity" />
+        <activity android:name=".ui.StockTransfer.StockTransferActivity" />
+        <activity android:name=".ui.IssueActivity.IssueActivity" />
+        <activity android:name=".ui.DashBoardActivity.DashBoardActivity" />
+        <activity android:name=".ui.LoginActivity.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.nehad.warehouse.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+    </application>
+
+</manifest>

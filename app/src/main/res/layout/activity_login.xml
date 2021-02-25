@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="10dp"
+    android:layout_margin="20dp"
+    tools:context=".ui.LoginActivity.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/downloadTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:text="@string/press_the_button_to_download_data"
+            android:textColor="@color/teal_700"
+            />
+
+
+
+
+
+        <ImageButton
+            android:id="@+id/downloadBtn"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/roundbutton"
+            android:src="@drawable/download"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#fff" />
+
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:visibility="invisible"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="144dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <LinearLayout
+            android:id="@+id/input_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="50dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <EditText
+                android:id="@+id/userName_ed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/edit_text_top"
+
+                android:hint="@string/username"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/password_ed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/edit_text_bottom"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:padding="10dp"
+                android:textSize="14sp" />
+
+
+            <CheckBox
+                android:id="@+id/checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_gravity="left"
+                android:text="@string/remember_me"/>
+            <Button
+                android:id="@+id/signInBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="40dp"
+                android:background="@color/teal_700"
+                android:text="@string/sign_in"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp" />
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

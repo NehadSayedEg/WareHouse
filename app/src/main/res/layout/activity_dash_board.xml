@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.DashBoardActivity.DashBoardActivity">
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:id="@+id/bg_top_header"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/ic_bg_topheader"/>
+
+<!--        <ImageView-->
+<!--            android:id="@+id/user_photo"-->
+<!--            android:layout_width="71dp"-->
+<!--            android:layout_height="71dp"-->
+<!--            android:layout_marginStart="26dp"-->
+<!--            android:layout_marginTop="24dp"-->
+<!--            android:src="@drawable/box"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+        <TextView
+            android:textSize="25sp"
+            android:text="@string/usernameDashBoard"
+            android:id="@+id/user_name"
+            android:textColor="#ffffff"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="28dp"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+           />
+
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="110dp"
+                android:layout_marginBottom="60dp"
+                android:alignmentMode="alignMargins"
+                android:columnCount="2"
+                android:columnOrderPreserved="false"
+                android:padding="14dp"
+                android:rowCount="3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="@id/bg_top_header"
+                app:layout_constraintVertical_bias="1.0"
+                app:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteX="-16dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/storesCard"
+
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/white"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="6dp">
+
+                    <LinearLayout
+                        android:id="@+id/storesLayout"
+                        android:layout_width="108dp"
+                        android:layout_height="104dp"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="20dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/stores"
+                            android:layout_width="wrap_content"
+                            android:layout_height="49dp"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@drawable/stores" />
+
+                        <TextView
+                            android:id="@+id/stores_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Stores"
+                            android:textColor="@color/teal_700"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/itemsCard"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/white"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="6dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="16dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/items"
+                            android:layout_width="wrap_content"
+                            android:layout_height="36dp"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@drawable/items"
+                            />
+
+                        <TextView
+                            android:id="@+id/items_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Items"
+                            android:textColor="@color/teal_700"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/balanceCard"
+
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/white"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="6dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="16dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/balances"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@drawable/balance" />
+
+                        <TextView
+                            android:id="@+id/balances_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Balances"
+                            android:textColor="@color/teal_700"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/issuesCard"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/white"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="6dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="111dp"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="16dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/stock_issues"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@drawable/stock_issues" />
+
+                        <TextView
+                            android:id="@+id/stock_issues_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Stock Issue"
+                            android:textColor="@color/teal_700"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/receiveCard"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/white"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="6dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="109dp"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="16dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/stock_receive"
+                            android:layout_width="55dp"
+                            android:layout_height="61dp"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@drawable/store_receive" />
+
+                        <TextView
+                            android:id="@+id/stock_receive_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Stock Receive"
+                            android:textColor="@color/teal_700"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/transferCard"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/white"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="6dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="16dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/stock_tansfer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@drawable/store_transfer" />
+
+                        <TextView
+                            android:id="@+id/stock_transfer_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Stock Transfer"
+                            android:textColor="@color/teal_700"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/reportsCard"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/white"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="6dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="16dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/reports"
+                            android:layout_width="80dp"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@drawable/report" />
+
+                        <TextView
+                            android:id="@+id/reports_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Reports"
+                            android:textColor="@color/teal_700"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </GridLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
