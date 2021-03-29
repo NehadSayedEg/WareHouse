@@ -8,7 +8,8 @@ import com.nehad.warehouse.database.Dao.WareHouseDao
 import com.nehad.warehouse.model.*
 
 @Database(entities = [ UserGroup::class  , User::class , Store::class  , StoreType::class , Item::class , DocumentType::class
-    , Shelf::class  , Balance::class  ,DocumentHeader::class , DocumentLines::class], version = 3  ,exportSchema = false )
+    , Shelf::class  , Balance::class  ,DocumentHeader::class , DocumentLines::class , StockCountDetail::class , StockheaderDoc::class],
+    version = 10  ,exportSchema = false )
 abstract class WareHouseDB : RoomDatabase(){
 
     abstract val wareHouseDao: WareHouseDao

@@ -6,15 +6,16 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 
 @Entity(tableName = "document_header_table")
 data class DocumentHeader(
         @NonNull
-        @PrimaryKey(autoGenerate = false)
+        @PrimaryKey(autoGenerate = true)
         @ColumnInfo( name="document_header_id")
         @SerializedName("document_header_id")
-        var documentHeaderId : String  ="",
+        var documentHeaderId : Long? = null ,
 
         @NonNull
         @ColumnInfo( name="document_type_id")
@@ -65,4 +66,9 @@ data class DocumentHeader(
         @SerializedName("update_by")
         var UpdateBy: String  =""
 
-)
+): Serializable {
+
+        override fun toString(): String {
+                return super.toString()
+        }
+}

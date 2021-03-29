@@ -45,7 +45,7 @@ class StoresAdapter(storesActivity: StoresActivity) :RecyclerView.Adapter<Stores
         holder.itemView.setOnClickListener {
             val context=holder.storeName.context
 
-            val  storeId = storeList.get(position).storeId
+            val  storeId = storeList.get(position).storeId.toString()
 
             val intent = Intent(context   , ShelfsActivity::class.java)
             intent.putExtra("storeId", storeId)

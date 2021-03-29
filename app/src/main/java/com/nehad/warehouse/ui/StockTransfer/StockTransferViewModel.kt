@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.nehad.warehouse.database.WareHouseRepository
+import com.nehad.warehouse.model.DocumentHeader
 import com.nehad.warehouse.model.Shelf
 
 
@@ -13,6 +14,7 @@ class StockTransferViewModel ( private val repository: WareHouseRepository): Vie
 
     fun getAllshelfs() = repository.shelfs
     fun getAllStores() = repository.stores
+    fun getAlldocuments() = repository.documentHeader
 
     override fun addOnPropertyChangedCallback(callback: androidx.databinding.Observable.OnPropertyChangedCallback?) {
         TODO("Not yet implemented")
@@ -54,6 +56,10 @@ class StockTransferViewModel ( private val repository: WareHouseRepository): Vie
 
     fun getShelfByStoreID(storeId:String): LiveData<List<String>> {
         return repository.getShelfByStoreID(storeId)
+    }
+
+    fun insertDocumentHeader(documentHeader: DocumentHeader){
+        return repository.insertDocumentHeader(documentHeader)
     }
 }
 class StockTransferViewModelFactory(private val repository: WareHouseRepository) : ViewModelProvider.NewInstanceFactory() {

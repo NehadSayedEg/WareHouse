@@ -54,8 +54,10 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
 
-
-        signInBtn.setOnClickListener {
+        downloadBtn.setOnClickListener {
+            loadData()
+        }
+        signInBtn.setOnClickListener ( View.OnClickListener {
             val username = userName_ed.text.toString()
             val password = password_ed.text.toString()
             val checked = checkbox.isChecked
@@ -97,12 +99,10 @@ class LoginActivity : AppCompatActivity() {
 
 
 
-        }
+             })
 
 
-        downloadBtn.setOnClickListener {
-            loadData()
-        }
+
 
 
     }

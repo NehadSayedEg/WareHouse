@@ -13,7 +13,7 @@ interface WareHouseDao {
     fun insertUsers(users: List<User>)
 
     @Transaction
-    @Query( "SELECT  * FROM  user_table")
+    @Query("SELECT  * FROM  user_table")
     fun  getAllUsers():LiveData<List<User>>
 
 
@@ -32,7 +32,7 @@ interface WareHouseDao {
 
 
     @Transaction
-    @Query( "SELECT  * FROM  userGroup_table")
+    @Query("SELECT  * FROM  userGroup_table")
     fun  getAllUserGroups(): LiveData<List<UserGroup>>
 
 
@@ -40,7 +40,7 @@ interface WareHouseDao {
     fun insertItem(items: List<Item>)
 
     @Transaction
-    @Query( "SELECT  * FROM  item_table")
+    @Query("SELECT  * FROM  item_table")
     fun  getAllItems(): LiveData<List<Item>>
 
 
@@ -49,28 +49,28 @@ interface WareHouseDao {
     fun insertSelf(shelves: List<Shelf>)
 
     @Transaction
-    @Query( "SELECT  * FROM  self_table  where  store_id =:store_id")
-    fun  getSelfofStore( store_id :String): LiveData<List<Shelf>>
+    @Query("SELECT  * FROM  self_table  where  store_id =:store_id")
+    fun  getSelfofStore(store_id: String): LiveData<List<Shelf>>
 
 
     @Transaction
-    @Query( "SELECT  * FROM  store_table  where  store_id =:store_id")
-    fun  getSelfWithStore( store_id :String): LiveData<List<StoresAndShelfs>>
+    @Query("SELECT  * FROM  store_table  where  store_id =:store_id")
+    fun  getSelfWithStore(store_id: String): LiveData<List<StoresAndShelfs>>
 
     @Transaction
-    @Query( "SELECT  * FROM  userGroup_table  where  user_group_id =:userGroupId")
-    fun  getuserWithUserGroup( userGroupId :String): LiveData<List<UserAndUserGroup>>
+    @Query("SELECT  * FROM  userGroup_table  where  user_group_id =:userGroupId")
+    fun  getuserWithUserGroup(userGroupId: String): LiveData<List<UserAndUserGroup>>
 
 
     @Transaction
-    @Query( "SELECT  * FROM  self_table")
+    @Query("SELECT  * FROM  self_table")
     fun  getAllSelf():LiveData<List<Shelf>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertStore(stores: List<Store>)
 
     @Transaction
-    @Query( "SELECT  * FROM  store_table")
+    @Query("SELECT  * FROM  store_table")
     fun  getAllStores():LiveData<List<Store>>
 
     @Transaction
@@ -94,7 +94,7 @@ interface WareHouseDao {
 
     @Transaction
     @Query("SELECT shelf_name_en FROM  self_table WHERE store_id =:storeId")
-    fun getShelfByStoreID(storeId:String): LiveData<List<String>>
+    fun getShelfByStoreID(storeId: String): LiveData<List<String>>
 
     @Transaction
     @Query("SELECT shelf_name_en FROM self_table  WHERE store_id = :store_id")
@@ -114,7 +114,7 @@ interface WareHouseDao {
 
 
     @Transaction
-    @Query( "SELECT  * FROM  storeType_table")
+    @Query("SELECT  * FROM  storeType_table")
     fun  getAllStoreType():LiveData<List<StoreType>>
 
 
@@ -122,7 +122,73 @@ interface WareHouseDao {
     fun insertDocumentType(documenttypes: List<DocumentType>)
 
     @Transaction
-    @Query( "SELECT  * FROM  documentType_table")
+    @Query("SELECT  * FROM  documentType_table")
     fun  getAllDocumentType():LiveData<List<DocumentType>>
+
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insertDocumentHeader(documentHeader: DocumentHeader)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insertDocumentLine(documentLine: DocumentLines)
+
+    @Transaction
+    @Query("SELECT  * FROM  document_header_table")
+    fun  getDocumentHeader():LiveData<List<DocumentHeader>>
+
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertStockCountDocHeader(stockheaderDoc: StockheaderDoc):Long
+
+
+//    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+fun insertStockCountDocDetails(stockCountDetail: StockCountDetail)
+
+    @Delete
+    fun deleteStockCountDetail(stockCountDetail: StockCountDetail)
+
+
+    @Query("UPDATE stock_count_detail_table  SET qty = qty + 1 WHERE item_barcode = :barcode")
+    fun updateQuantity(barcode: String?)
+
+    @Query("SELECT * from stock_count_detail_table WHERE item_barcode = :barcode")
+    fun getItemByBarcode(barcode: String?): List<StockCountDetail>
+
+    @Insert
+    fun insertStockDetails(stockDetailList: StockCountDetail)
+
+
+    @Query("UPDATE stock_count_detail_table SET  qty = qty + :value  AND update_date = :update  WHERE item_barcode = :barcode")
+    fun updateAddDialog(barcode: String, value: Double, update: String)
+
+
+    @Query("UPDATE stock_count_detail_table  SET  qty = :qty WHERE  document_id = :document_number AND item_barcode  = :barcode")
+    fun updateItem(barcode: String?, qty: Double, document_number: Long?)
+
+    fun insertOrUpdate(stockDetail: StockCountDetail) {
+        val itemsFromDB: List<StockCountDetail> = getItemByBarcode(stockDetail.itemBarcode)
+        if (itemsFromDB.isEmpty()) insertStockDetails(stockDetail) else {
+            updateQuantity(stockDetail.itemBarcode)
+        }
+    }
+
+
+    @Transaction
+    @Query("SELECT  * FROM  stock_header_doc_table")
+    fun  getStockCountDocHeader():LiveData<List<StockheaderDoc>>
+
+    @Transaction
+    @Query("SELECT  * FROM  stock_count_detail_table")
+    fun  getStockCountDoccDetails():LiveData<List<StockCountDetail>>
+
+    @Transaction
+    @Query("SELECT * FROM  stock_count_detail_table WHERE stock_header_doc_id = :docId ")
+    fun getStockDetailByDocID(docId: String):LiveData<List<StockCountDetail>>
+
+    @Transaction
+    @Query("SELECT * FROM  stock_count_detail_table WHERE stock_header_doc_id = :docId ")
+    fun getStockDetailByID(docId: String) : List<StockCountDetail>
+
+
 
 }

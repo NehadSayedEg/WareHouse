@@ -2,7 +2,6 @@ package com.nehad.warehouse.database
 
 import androidx.lifecycle.LiveData
 import com.nehad.warehouse.database.Dao.WareHouseDao
-import com.nehad.warehouse.database.Relations.StoresAndShelfs
 import com.nehad.warehouse.database.Relations.UserAndUserGroup
 import com.nehad.warehouse.model.*
 
@@ -15,6 +14,10 @@ class WareHouseRepository (private val  dao: WareHouseDao) {
     val documentTypes  =  dao.getAllDocumentType()
     val storeTypes  =  dao.getAllStoreType()
 
+    val documentHeader  =  dao.getDocumentHeader()
+
+    val stockheaderDoc = dao.getStockCountDocHeader()
+    val stockCountDetail = dao.getStockCountDoccDetails()
 
 
 
@@ -95,5 +98,47 @@ class WareHouseRepository (private val  dao: WareHouseDao) {
     fun insertDocumentType(documenttypes: List<DocumentType>){
         dao.insertDocumentType(documenttypes)
     }
+
+    fun insertDocumentHeader(documentHeader: DocumentHeader){
+        return dao.insertDocumentHeader(documentHeader)
+    }
+    fun insertStockCountDocHeader(stockheaderDoc: StockheaderDoc){
+        dao.insertStockCountDocHeader(stockheaderDoc)
+    }
+
+    fun insertStockCountDocDetails(stockCountDetail: StockCountDetail){
+         dao.insertStockCountDocDetails(stockCountDetail)
+    }
+
+    fun deleteStockCountDetail(stockCountDetail: StockCountDetail){
+        dao.deleteStockCountDetail(stockCountDetail)
+
+    }
+
+//    fun updateAddDialog(barcode: String, value: Float , update: String)
+//    {
+//       return dao.updateAddDialog(barcode , value ,update)
+//
+//    }
+
+
+
+    fun  getStockCountDocHeader():LiveData<List<StockheaderDoc>>{
+        return dao.getStockCountDocHeader()
+    }
+
+
+    fun  getStockCountDoccDetails():LiveData<List<StockCountDetail>>{
+        return dao.getStockCountDoccDetails()
+
+    }
+
+    fun getStockDetailByDocID(docId: String):LiveData<List<StockCountDetail>>{
+        return dao.getStockDetailByDocID(docId)
+    }
+
+
+
+
 
 }

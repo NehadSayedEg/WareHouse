@@ -12,8 +12,11 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:hardwareAccelerated="true"
         android:theme="@style/Theme.WareHouse">
-        <activity android:name=".ui.invoice.InvoiceActivity"></activity>
+        <activity android:name=".ui.StockCountDetialsActivity.StockCountDetialsActivity"></activity>
+        <activity android:name=".ui.StockCountActivity.StockCountActivity" />
+        <activity android:name=".ui.invoice.InvoiceActivity" />
         <activity android:name=".ui.ShelfActivity.ShelfsActivity" />
         <activity android:name=".ui.stockRecevie.StockRecevieActivity" />
         <activity android:name=".ui.balance.BalanceActivity" />

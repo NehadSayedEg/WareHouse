@@ -31,6 +31,8 @@ import com.nehad.warehouse.database.Common
 import com.nehad.warehouse.database.Dao.WareHouseDao
 import com.nehad.warehouse.database.WareHouseDB
 import com.nehad.warehouse.database.WareHouseRepository
+import com.nehad.warehouse.model.DocumentHeader
+import com.nehad.warehouse.model.StockheaderDoc
 import com.nehad.warehouse.ui.IssueActivity.IssueViewModel
 import com.nehad.warehouse.ui.IssueActivity.IssueViewModelFactory
 import kotlinx.android.synthetic.main.activity_issue.*
@@ -40,9 +42,12 @@ import kotlinx.android.synthetic.main.activity_stock_transfer.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileOutputStream
 import java.lang.Exception
+import java.text.SimpleDateFormat
+import java.util.*
 
 class StockRecevieActivity : AppCompatActivity() {
 
@@ -84,8 +89,61 @@ class StockRecevieActivity : AppCompatActivity() {
         })
         fromstoreSpinner.adapter = fromstoreSpinnerAdapter
 
+        saveReceiveBtn.setOnClickListener {
+            Log.e("fromStore", "fromStore")
+            fromStore = "1"
+            toStore ="1"
+            Log.e("fromStore", fromStore)
+            Log.e("toStore", toStore)
+//            Log.e("qty", qty)
+//            Log.e("item", item)
+//            Log.e("storeId", storeId)
+
+//            Log.e("storeName", storeName)
+//            Log.e("shelfName", shelfName)
+//            Log.e("itemName", itemName)
+            val documentType = "2"
 
 
+
+            GlobalScope.launch(Dispatchers.IO) {
+                var stockCountHeader = StockheaderDoc()
+
+
+                val  currentTime = System.currentTimeMillis()
+                val sdf = SimpleDateFormat("MMM dd,yyyy HH:mm:ss")
+                val resultdate = Date(currentTime)
+                val timeFormate = sdf.format(resultdate)
+
+                Log.e(" Timeformate " ,timeFormate )
+
+
+                var documentHeader = DocumentHeader()
+                documentHeader.storeToId = toStore
+                documentHeader.storeFromId = fromStore
+                documentHeader.documentTypeId = documentType
+                documentHeader.createdDate = currentTime.toString()
+
+                stockRecevieViewModel.insertDocumentHeader(documentHeader)
+
+                Log.e("Login :" ,  stockRecevieViewModel.insertDocumentHeader(documentHeader).toString())
+
+
+            }
+            GlobalScope.launch(Dispatchers.Main) {
+//                Log.e("item", item)
+                stockRecevieViewModel.getAlldocuments().observe( this@StockRecevieActivity  ,
+                    Observer {
+
+                        Log.e("Size :" ,   it.size.toString())
+
+
+
+                    })
+            }
+
+
+        }
 
         fromstoreSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -249,11 +307,9 @@ class StockRecevieActivity : AppCompatActivity() {
                 }
 
                 override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
-                    TODO("Not yet implemented")
                 }
 
                 override fun onPermissionRationaleShouldBeShown(p0: PermissionRequest?, p1: PermissionToken?) {
-                    TODO("Not yet implemented")
                 }
 
             })

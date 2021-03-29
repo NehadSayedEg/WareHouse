@@ -25,6 +25,7 @@ class StoresActivity : AppCompatActivity() {
         setContentView(R.layout.activity_stores)
 
 
+
         val dao:WareHouseDao = WareHouseDB.getInstance(application).wareHouseDao
         val repository = WareHouseRepository(dao)
         val factory = ViewModelStoresFactory(repository)

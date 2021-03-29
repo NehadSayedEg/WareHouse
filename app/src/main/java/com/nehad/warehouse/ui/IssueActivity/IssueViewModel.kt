@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.nehad.warehouse.database.WareHouseRepository
+import com.nehad.warehouse.model.DocumentHeader
 import com.nehad.warehouse.model.Shelf
 import com.nehad.warehouse.model.Store
 
@@ -13,6 +14,8 @@ class IssueViewModel ( private val repository: WareHouseRepository): ViewModel()
 
     fun getAllshelfs() = repository.shelfs
     fun getAllStores() = repository.stores
+    fun getAlldocuments() = repository.documentHeader
+
 
     override fun addOnPropertyChangedCallback(callback: androidx.databinding.Observable.OnPropertyChangedCallback?) {
         TODO("Not yet implemented")
@@ -54,6 +57,9 @@ class IssueViewModel ( private val repository: WareHouseRepository): ViewModel()
 
     fun getShelfByStoreID(storeId:String): LiveData<List<String>>{
         return repository.getShelfByStoreID(storeId)
+    }
+    fun insertDocumentHeader(documentHeader: DocumentHeader){
+        return repository.insertDocumentHeader(documentHeader)
     }
 }
 class IssueViewModelFactory(private val repository: WareHouseRepository) : ViewModelProvider.NewInstanceFactory() {

@@ -33,10 +33,13 @@ import com.nehad.warehouse.database.Common
 import com.nehad.warehouse.database.Dao.WareHouseDao
 import com.nehad.warehouse.database.WareHouseDB
 import com.nehad.warehouse.database.WareHouseRepository
+import com.nehad.warehouse.model.DocumentHeader
+import com.nehad.warehouse.model.StockheaderDoc
 import com.nehad.warehouse.ui.balance.BalanceActivity
 import kotlinx.android.synthetic.main.activity_issue.*
 import kotlinx.android.synthetic.main.activity_issue.view.*
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_stock_recevie.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -45,6 +48,8 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.lang.Exception
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.math.log
 
 
@@ -56,6 +61,13 @@ class IssueActivity : AppCompatActivity() {
     var storeName :String =""
     var shelfName :String =""
     var itemName :String =""
+
+
+    var fromStore:String =""
+    var toStore:String =""
+    var qty:String =""
+    var item:String =""
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -203,8 +215,61 @@ class IssueActivity : AppCompatActivity() {
             }
         }
 
+        saveIssueBtn.setOnClickListener {
+            Log.e("fromStore", "fromStore")
+            fromStore = "2"
+            toStore ="2"
+            Log.e("fromStore", fromStore)
+            Log.e("toStore", toStore)
+//            Log.e("qty", qty)
+//            Log.e("item", item)
+//            Log.e("storeId", storeId)
+
+//            Log.e("storeName", storeName)
+//            Log.e("shelfName", shelfName)
+//            Log.e("itemName", itemName)
+            val documentType = "2"
 
 
+
+            GlobalScope.launch(Dispatchers.IO) {
+                var stockCountHeader = StockheaderDoc()
+
+
+                val  currentTime = System.currentTimeMillis()
+                val sdf = SimpleDateFormat("MMM dd,yyyy HH:mm:ss")
+                val resultdate = Date(currentTime)
+                val timeFormate = sdf.format(resultdate)
+
+                Log.e(" Timeformate " ,timeFormate )
+
+
+                var documentHeader = DocumentHeader()
+                documentHeader.storeToId = toStore
+                documentHeader.storeFromId = fromStore
+                documentHeader.documentTypeId = documentType
+                documentHeader.createdDate = currentTime.toString()
+
+                issueViewModel.insertDocumentHeader(documentHeader)
+
+                Log.e("Login :" ,  issueViewModel.insertDocumentHeader(documentHeader).toString())
+
+
+            }
+            GlobalScope.launch(Dispatchers.Main) {
+//                Log.e("item", item)
+                issueViewModel.getAlldocuments().observe( this@IssueActivity  ,
+                        Observer {
+
+                            Log.e("Size :" ,   it.size.toString())
+
+
+
+                        })
+            }
+
+
+        }
 
         Dexter.withContext(this)
                 .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -220,11 +285,9 @@ class IssueActivity : AppCompatActivity() {
                     }
 
                     override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
-                        TODO("Not yet implemented")
                     }
 
                     override fun onPermissionRationaleShouldBeShown(p0: PermissionRequest?, p1: PermissionToken?) {
-                        TODO("Not yet implemented")
                     }
 
                 })
