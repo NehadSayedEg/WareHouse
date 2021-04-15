@@ -14,8 +14,13 @@ interface ApiService {
     suspend fun getAllData(): Response<AllData>
 
 
-    @GET("synctophone.php")
+    @GET("synctophone/synctophone.php")
     fun getData(): Call<AllData>
+    //http://whm.signaturegypt.com/api/sync/syncfromphone/syncdocuments.php
+  //  "https://whm.signaturegypt.com/api/sync/synctophone/"
+
+    @POST("syncfromphone/syncdocuments.php")
+    fun postDoc(): Call<DocumentHeader>
 
 //https://johncodeos.com/how-to-make-post-get-put-and-delete-requests-with-retrofit-using-kotlin/
 //    @POST("/api/v1/create")
